@@ -11,6 +11,7 @@ public class SpawnManager : MonoBehaviour
     public ParticleSystem enemyExplosionParticle;
     private bool isGameActive = false;
     private int difficulty;
+    public int pause = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,13 +22,18 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pause *= (-1);
+        }
 
     }
     public void SpawnEnemy()
     {
         isGameActive = FindFirstObjectByType<GameManager>().isGameActive; ;
         if (!isGameActive) return;
+
+        if (pause < 0) return;
 
         if (gameManager.GameOver)
         {

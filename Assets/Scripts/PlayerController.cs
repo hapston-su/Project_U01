@@ -1,5 +1,5 @@
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+//using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 
 public class PlayerController : MonoBehaviour
@@ -28,10 +28,10 @@ public bool isGameActive;
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Player Control Is Game Active1: " + isGameActive);
+        
         isGameActive = FindFirstObjectByType<GameManager>().isGameActive;
         if (!isGameActive) return;
-        Debug.Log("Player Control Is Game Active2: " + isGameActive);
+        
             horizontalInput = Input.GetAxis("Horizontal");
             verticalInput = transform.position.z;
             transform.Rotate(Vector3.up * horizontalInput * speed * Time.deltaTime);
@@ -69,7 +69,7 @@ public bool isGameActive;
         {
             Debug.LogWarning("No ParticleSystem component found on the player for explosion effect.");
         }
-        Debug.Log("Player has exploded.");
+        
     }
 
 }

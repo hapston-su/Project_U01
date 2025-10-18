@@ -12,7 +12,9 @@ public class DifficultyLevel : MonoBehaviour
     private GameManager gameManager;
     public int difficulty;
     public Button startButton;
+    public Button restartButton;
     public TextMeshProUGUI titleText;
+    public TextMeshProUGUI instructionsText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,13 +23,9 @@ public class DifficultyLevel : MonoBehaviour
 
         // Subscribe to value change event
         slider.onValueChanged.AddListener(UpdateText);
-
-        //button = GetComponent<Button>();
-       // button = GameObject.Find("Start Game").GetComponent<Button>();
-        //gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+              
         difficulty = (int)slider.value;
-
-       // button.onClick.AddListener(SetDifficulty);
+             
     }
 
     // Update is called once per frame
@@ -40,6 +38,8 @@ public class DifficultyLevel : MonoBehaviour
     {
         startButton.gameObject.SetActive(false);
         titleText.gameObject.SetActive(false);
+        instructionsText.gameObject.SetActive(false);    
+        restartButton.gameObject.SetActive(true);
         FindFirstObjectByType<GameManager>().StartGame(difficulty);
        
     }

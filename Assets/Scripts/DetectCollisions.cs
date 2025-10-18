@@ -23,23 +23,25 @@ public class DetectCollisions : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-          //  explosionAudio.PlayOneShot(explosionSound, 1.0f);
+            //  explosionAudio.PlayOneShot(explosionSound, 1.0f);
+            Instantiate(enemyExplosionPrefab, other.gameObject.transform.position, other.gameObject.transform.rotation);
             AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             Destroy(gameObject);
             FindFirstObjectByType<GameManager>().EndGame();
-            FindFirstObjectByType<PlayerController>().PlayerExplosion();
+            //FindFirstObjectByType<PlayerController>().PlayerExplosion();
             }
         else
         {
 
-            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             Debug.Log("Hit enemy collison " + other.name);
-            GameObject enemyExplosion = Instantiate(enemyExplosionPrefab, transform.position, transform.rotation);
-            enemyExplosion.GetComponent<ParticleSystem>().Play();
+            Instantiate(enemyExplosionPrefab, transform.position, transform.rotation);
+            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
             FindFirstObjectByType<GameManager>().UpdateScore(125);
             Destroy(other.gameObject);
             Destroy(gameObject);
+
+
         }
-        
+
     }
 }

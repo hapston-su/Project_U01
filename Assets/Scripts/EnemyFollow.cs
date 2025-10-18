@@ -7,6 +7,8 @@ public class EnemyFollow : MonoBehaviour
     public GameManager gameManager;
     private bool isGameActive = false;
     private int difficulty;
+    private bool gameOver = false;
+    private int pause;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,9 +20,12 @@ public class EnemyFollow : MonoBehaviour
     void Update()
     {
        isGameActive = FindFirstObjectByType<GameManager>().isGameActive;
-       difficulty = FindFirstObjectByType<DifficultyLevel>().difficulty;   
+       difficulty = FindFirstObjectByType<DifficultyLevel>().difficulty; 
+        pause = FindFirstObjectByType<SpawnManager>().pause;    
+        gameOver = FindFirstObjectByType<GameManager>().GameOver;
         if (!isGameActive) return;
-        if (gameManager.GameOver) return; // Stop moving if game is over
+        if (pause < 0) return;  
+        if (gameOver) return; // Stop moving if game is over
         if (player == null) return;
         if (difficulty == 2) speed = 100f;  
         if (difficulty == 3) speed = 150f;
