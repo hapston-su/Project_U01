@@ -32,6 +32,8 @@
 
 # 5\. The game ends when the player collides with an enemy.
 
+# 6\. The score UI update the game points. The shells are counted as expenses(-25 points) and enemy killed are gains (125 points).
+
 # 
 
 # ---
